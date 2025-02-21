@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Cosmic Love Portal</title>
+    <style>
+        /* Style for the body */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: url('background.webp') no-repeat center center/cover;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        /* Title Styling */
+        h1 {
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            text-align: center;
+            color: #ddd;
+            font-size: 5rem;
+            font-family: sans-serif;
+            letter-spacing: 0.2rem;
+            cursor: pointer;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Hide elements initially */
+        .hidden {
+            display: none;
+        }
+
+        /* Cube Container */
+        .cube-container {
+            width: 300px;
+            height: 300px;
+            perspective: 1000px;
+            display: none;
+        }
+
+        /* Cube */
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 10s infinite linear;
+        }
+
+        /* Cube Faces */
+        .face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 3.0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Cube Rotation Animation */
+        @keyframes rotateCube {
+            from {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+            to {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+        /* Cube Faces Positioning */
+        .front  { transform: rotateY(  0deg) translateZ(150px); background-image: url(datelooking.jpg); }
+        .back   { transform: rotateY(180deg) translateZ(150px); background-image: url(date 1.jpg); }
+        .right  { transform: rotateY( 90deg) translateZ(150px); background-image: url(lap.jpg); }
+        .left   { transform: rotateY(-90deg) translateZ(150px); background-image: url(morningvisit.jpg); }
+        .top    { transform: rotateX( 90deg) translateZ(150px); background-image: url(last.jpg); }
+        .bottom { transform: rotateX(-90deg) translateZ(150px); background-image: url(firstvisit.jpg); }
+
+        /* Section Styling */
+        .section {
+            margin-top: 20px;
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.40);
+            color: black;
+            border-radius: 10px;
+            text-align: center;
+            display: none; /* Hidden initially */
+        }
+
+        /* Input field */
+        .time-capsule input {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 250px;
+        }
+
+        /* Button */
+        .time-capsule button {
+            background: #ff4081;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body onclick="nextStep()">
+
+    <!-- Title -->
+    <h1 id="title">Our Cosmic Love Portal</h1>
+
+    <!-- 3D Cube -->
+    <div class="cube-container hidden" id="cubeContainer">
+        <div class="cube">
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
+        </div>
+    </div>
+
+    <!-- Story, AR, and Time Capsule Sections -->
+    <div class="section hidden" id="storySection">
+        <h2>Parallel Universe Love Story</h2>
+        <p>It all started with a simple conversation on Instagram—just two souls connecting in the vast digital universe. What began as casual chats soon turned into late-night conversations filled with laughter, comfort, and a growing bond.
+
+She became my anchor when I was drifting in the waves of my past, helping me move on from a love that once felt impossible to forget. She didn’t just listen; she understood, and in that understanding, she healed parts of me I didn’t know were broken.
+
+Somewhere along the way, something changed. I started seeing her in a different light—not just as a friend but as someone I could fall for. But fear held me back. I didn’t want to risk losing what we had, so I kept my feelings locked away, cherishing our friendship instead.
+
+Days turned into months, and our friendship deepened. We became inseparable—best friends who knew each other’s hearts without needing words. But my heart couldn’t keep the secret forever. So one day, with a mix of courage and uncertainty, I confessed.
+
+She didn’t say yes right away. She tested my patience, my feelings, my commitment. And though waiting was hard, I knew she was worth every second.
+
+And then, one day, she said yes.
+
+That moment changed everything. What started as an unexpected friendship turned into a love that has stood the test of time. Now, four and a half years later, we’re still here—still laughing, still loving, still choosing each other every single day.
+
+Maybe love isn’t always about grand gestures or perfect beginnings. Sometimes, it’s about finding that one person who stays, who believes in you, and who makes the journey of life a little more beautiful.
+
+And for me, that person has always been her. ❤️✨.</p>
+    </div>
+
+    <!-- AR Love Notes Section -->
+<div class="section hidden" id="arSection">
+    <h2>Augmented Reality Love Notes</h2>
+    <p>Click the button below to reveal floating love notes! 💕</p>
+    <button onclick="redirectToAR()">Press Me</button>
+</div>
+
+<script>
+    function redirectToAR() {
+        window.location.href = "ar_love_notes.html"; // Replace with the actual AR page filename
+    }
+</script>
+
+    <div class="section hidden time-capsule" id="timeCapsule">
+        <h2>Future Love Letters</h2>
+        <p>Special messages that will unlock over time.</p>
+        <input type="text" id="passwordInput" placeholder="Type the secret phrase...">
+        <button onclick="checkPassword()">Submit</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        let step = 0;
+
+        function nextStep() {
+            if (step === 0) {
+                document.getElementById("title").style.display = "none";
+                document.getElementById("cubeContainer").style.display = "block"; // Show 3D Cube
+            } else if (step === 1) {
+                document.getElementById("cubeContainer").style.display = "none";
+                document.getElementById("storySection").style.display = "block"; // Show Story
+                document.getElementById("arSection").style.display = "block"; // Show AR
+                document.getElementById("timeCapsule").style.display = "block"; // Show Time Capsule
+                document.body.onclick = null; // Stop further clicks
+            }
+            step++;
+        }
+
+        function checkPassword() {
+            let input = document.getElementById("passwordInput").value.trim().toLowerCase();
+            if (input === "i love you tejas") {
+                unlockMessage();
+                document.getElementById("passwordInput").value = "";
+            } else {
+                alert("Please type 'I love you Tejas' to unlock the message.");
+                document.getElementById("passwordInput").value = "";
+            }
+        }
+
+        function unlockMessage() {
+            const messages = [
+                "I love you more than the stars in the sky! 🌟",
+                "Every second with you is a dream come true. 💕",
+                "No matter where we are, my heart is always with you. ❤️",
+                "Distance means so little when someone means so much. 💖",
+                "Can't wait to see you again and make more memories together! 😘"
+            ];
+            document.getElementById("message").innerText = messages[Math.floor(Math.random() * messages.length)];
+        }
+    </script>
+
+</body>
+</html>
